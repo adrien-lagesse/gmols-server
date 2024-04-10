@@ -1,16 +1,29 @@
+[package]
+name = "gmols-server"
+authors.workspace = true
+description = "The GMols server providing functionalities to the GMols client."
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+readme.workspace = true
+keywords.workspace = true
+publish = false
+
+[dependencies]
+public-search.workspace = true
+
 [workspace]
 resolver = "2"
-members = ["server", "crates/*"]
-default-members = ["server"]
+members = ["crates/*"]
 
 [workspace.package]
 authors = ["Adrien Lagesse"]
-description = "The GMols server providing functionalities to the GMols client."
+description = "Utility crate for the GMols server."
 version = "0.1.0"
 edition = "2021"
-license = "MIT"
 license-file = "LICENSE.txt"
 readme = "README.md"
 keywords = ["chemio-informatics", "bio-informatics", "database", "machine-learning"]
 
 [workspace.dependencies]
+public-search = {path = "crates/public-search"}

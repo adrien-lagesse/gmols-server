@@ -3,9 +3,12 @@
 version = 3
 
 [[package]]
-name = "public-search"
+name = "gmols-server"
 version = "0.1.0"
+dependencies = [
+ "public-search",
+]
 
 [[package]]
-name = "server"
+name = "public-search"
 version = "0.1.0"
