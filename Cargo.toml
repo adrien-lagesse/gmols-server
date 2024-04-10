@@ -5,7 +5,7 @@ default-members = ["server"]
 
 [workspace.package]
 authors = ["Adrien Lagesse"]
-description = "The GMols server providing functionalities to the GMols client"
+description = "The GMols server providing functionalities to the GMols client."
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
