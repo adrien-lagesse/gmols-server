@@ -1,1 +1,2 @@
-[![Rust](https://github.com/adrien-lagesse/gmols-server/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/adrien-lagesse/gmols-server/actions/workflows/rust.yml)
+[![Linux](https://github.com/adrien-lagesse/gmols-server/actions/workflows/linux.yml/badge.svg?branch=main)](https://github.com/adrien-lagesse/gmols-server/actions/workflows/linux.yml)
+[![MacOS](https://github.com/adrien-lagesse/gmols-server/actions/workflows/osx.yml/badge.svg?branch=main)](https://github.com/adrien-lagesse/gmols-server/actions/workflows/osx.yml)
