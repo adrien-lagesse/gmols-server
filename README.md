@@ -1,0 +1,1 @@
+[![Rust](https://github.com/adrien-lagesse/gmols-server/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/adrien-lagesse/gmols-server/actions/workflows/rust.yml)
