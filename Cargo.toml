@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = ["server", "crates/*"]
+default-members = ["server"]
+
+[workspace.package]
+authors = ["Adrien Lagesse"]
+description = "The GMols server providing functionalities to the GMols client"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+license-file = "LICENSE.txt"
+readme = "README.md"
+keywords = ["chemio-informatics", "bio-informatics", "database", "machine-learning"]
+
+[workspace.dependencies]
