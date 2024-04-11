@@ -1,8 +1,15 @@
 [package]
 name = "public-search"
-version = "0.1.0"
-edition = "2021"
+version.workspace = true
+edition.workspace = true
+license-file.workspace = true
+readme = "README.md"
+keywords.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+hyper.workspace = true
+hyper-util.workspace = true
+tokio.workspace = true
+serde_json.workspace = true
