@@ -27,47 +27,47 @@ impl Client {
             .await?;
 
         let result: JSON = response.json().await?;
-        let properties = result
-            .as_object()
-            .context("JSON object is not well formatted")?
-            .get("PropertyTable")
-            .context("No PropertyTable")?
-            .as_object()
-            .context("JSON object is not well formatted")?
-            .get("Properties")
-            .context("No Properties")?
-            .as_array()
-            .context("JSON object is not well formatted")?[0]
-            .as_object()
-            .context("JSON object is not well formatted")?;
 
-        let name = properties.get("Title").context("No Title")?.as_str().context("Title no str")?;
-        let iupac_name = properties
-            .get("IUPACName")
-            .context("No IUPACName")?
-            .as_str()
-            .context("IUPACName no str")?;
-        let molecular_formula = properties
-            .get("MolecularFormula")
-            .context("No MolecularFormula")?
-            .as_str()
-            .context("MolecularFormula no str")?;
-        let canonical_smiles = properties
-            .get("CanonicalSMILES")
-            .context("No CanonicalSMILES")?
-            .as_str()
-            .context("CanonicalSMILES no str")?;
-        let molecular_weight: f32 = properties
-            .get("MolecularWeight")
-            .context("No MolecularWeight")?
-            .as_str()
-            .context("MolecularWeight no str")?
-            .parse()?;
+        let name = result
+            .pointer("/PropertyTable/Properties/0/Title")
+            .and_then(|s| s.as_str())
+            .context("Can't find title")?;
+        let iupac_name = result
+            .pointer("/PropertyTable/Properties/0/IUPACName")
+            .and_then(|s| s.as_str())
+            .context("Can't find IUPACName")?;
+        let molecular_formula = result
+            .pointer("/PropertyTable/Properties/0/MolecularFormula")
+            .and_then(|s| s.as_str())
+            .context("Can't find MolecularFormula")?;
+        let canonical_smiles = result
+            .pointer("/PropertyTable/Properties/0/CanonicalSMILES")
+            .and_then(|s| s.as_str())
+            .context("Can't find CanonicalSMILES")?;
+        let molecular_weight: f32 = result
+            .pointer("/PropertyTable/Properties/0/MolecularWeight")
+            .and_then(|s| s.as_str())
+            .and_then(|s| s.parse().ok())
+            .context("Can't find MolecularWeight")?;
+
+        let response = self
+            .reqwest_client
+            .get(format!("{PUBCHEM_PROLOG}/compound/cid/{cid}/description/JSON"))
+            .send()
+            .await?;
+
+        let result: JSON = response.json().await?;
+
+        let description = result
+            .pointer("/InformationList/Information/1/Description")
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_string());
 
         Ok(Compound::new(
             cid,
             name.to_string(),
             iupac_name.to_string(),
+            description,
             molecular_formula.to_string(),
             canonical_smiles.to_string(),
             molecular_weight,
