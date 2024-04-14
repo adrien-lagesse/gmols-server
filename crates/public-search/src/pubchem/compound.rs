@@ -2,7 +2,7 @@ use serde;
 
 #[derive(Debug, serde::Serialize)]
 pub struct Compound {
-    cid: u32,
+    cid: u64,
     name: String,
     iupac_name: String,
     description: Option<String>,
@@ -13,7 +13,7 @@ pub struct Compound {
 
 impl Compound {
     pub fn new(
-        cid: u32,
+        cid: u64,
         name: String,
         iupac_name: String,
         description: Option<String>,

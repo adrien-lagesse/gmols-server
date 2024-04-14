@@ -17,7 +17,7 @@ impl Client {
         Client { reqwest_client: client }
     }
 
-    pub async fn get_compound_by_cid(&self, cid: u32) -> anyhow::Result<compound::Compound> {
+    pub async fn get_compound_by_cid(&self, cid: u64) -> anyhow::Result<compound::Compound> {
         let response = self
             .reqwest_client
             .get(
