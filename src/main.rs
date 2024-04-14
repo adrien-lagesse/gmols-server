@@ -17,7 +17,7 @@ async fn main() {
     axum::serve(listener, app).await.unwrap();
 }
 
-async fn search_pubchem_compounds(Path(cid): Path<u32>) -> Json<public_search::pubchem::Compound> {
+async fn search_pubchem_compounds(Path(cid): Path<u64>) -> Json<public_search::pubchem::Compound> {
     let client = public_search::pubchem::Client::new();
     let compound = client.get_compound_by_cid(cid).await.unwrap();
     Json(compound)
